@@ -1,0 +1,1485 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     52975,       1477]
+NotebookOptionsPosition[     47698,       1381]
+NotebookOutlinePosition[     48128,       1398]
+CellTagsIndexPosition[     48085,       1395]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Practice 5 and Practice 6. Group 2. Nerea Andia, Ander Cano, Mikel Lamela, \
+Aitor Larrinoa\
+\>", "Chapter",
+ CellChangeTimes->{{3.8249671626576557`*^9, 3.82496723586532*^9}, {
+  3.8249672956898966`*^9, 
+  3.824967298476309*^9}},ExpressionUUID->"482cb133-60d0-4dac-9f05-\
+0829d3100593"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Problem 1",
+ FontWeight->"Bold"]], "Section",
+ CellChangeTimes->{{3.8250530969467697`*^9, 
+  3.8250530989223795`*^9}},ExpressionUUID->"418cd4f5-dbf3-49ea-afd3-\
+ad050db6a086"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["a) Write a program in Mathematica that solves (5.2) \
+with two different f(x).",
+ FontWeight->"Bold",
+ FontColor->RGBColor[1, 0.5, 0]]], "Subsection",
+ CellChangeTimes->{{3.824967424846839*^9, 3.8249674378114605`*^9}, {
+  3.8250530401447334`*^9, 
+  3.8250530910365367`*^9}},ExpressionUUID->"d8c7b55f-76bb-433a-9627-\
+bba7db3e5b06"],
+
+Cell[TextData[StyleBox["f(x) = (3x+x^2)exp(x)", "Subsection",
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.6, 0.4, 0.2]]], "Subsubsection",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.8249674564118943`*^9, 3.8249674705044165`*^9}, 
+   3.825054988800352*^9, {3.8250573563781843`*^9, 
+   3.8250573566871357`*^9}},ExpressionUUID->"6a488f97-ea0b-4f96-9e8c-\
+0f9a0f9aecf5"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it first with FD",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{{3.8250548772883716`*^9, 3.825054888022829*^9}, 
+   3.8250549193148713`*^9, 3.8250550277087665`*^9, 3.825303891010037*^9, 
+   3.8253039271186852`*^9, {3.8253112441983643`*^9, 3.8253112679778986`*^9}, 
+   3.825311301738093*^9},ExpressionUUID->"25474860-aff3-42dc-88e6-\
+d8b31d36d1c5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"We", " ", "start", " ", "defining", " ", "the", " ", "grid"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time1", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"3", "x"}], "+", 
+       RowBox[{"x", "^", "2"}]}], ")"}], 
+     RowBox[{"Exp", "[", "x", "]"}]}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "define", " ", "the", " ", "function", " ", "we", " ", "are", " ", "going",
+     " ", "to", " ", "use"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"M", " ", "=", " ", "20"}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{"Number", " ", "of", " ", "interior", " ", "points"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalDelta]x", "=", " ", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{"M", "+", "1"}], ")"}]}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{"space", " ", "step"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"xx", "[", "j_", "]"}], ":=", " ", 
+    RowBox[{"j", " ", "\[CapitalDelta]x"}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{"discrete", " ", "grid", " ", "points"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", ":=", " ", 
+    RowBox[{"BB", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"xx", "[", "i", "]"}], "]"}], " ", ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "M"}], "}"}]}], "]"}]}]}], ";", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "vector", " ", "whose", " ", "components", " ", "are", " ", "the", " ", 
+      "values", " ", "of", " ", "f", " ", "evaluated", " ", "in", " ", "the", 
+      " ", "grid", " ", 
+      RowBox[{"points", ".", " ", "It"}], " ", "is", " ", "the", " ", 
+      "inhomogeneous", " ", "term", " ", "of", " ", "the", " ", "problem", 
+      " ", "Au"}], "=", "B"}], "*)"}], "\[IndentingNewLine]", "   ", 
+   RowBox[{"A", ":=", " ", 
+    RowBox[{"A", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"SparseArray", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+           RowBox[{"i", "==", 
+            RowBox[{"j", "+", "1"}]}]}], "\[Rule]", 
+          RowBox[{"-", "1"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+       RowBox[{"SparseArray", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+           RowBox[{"i", "==", 
+            RowBox[{"j", "-", "1"}]}]}], "\[Rule]", 
+          RowBox[{"-", "1"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+       RowBox[{"SparseArray", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+           RowBox[{"i", "==", "j"}]}], "\[Rule]", "2"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"M", ",", "M"}], "}"}]}], "]"}]}], "//", "Normal"}]}]}]}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "We", " ", "do", " ", "define", " ", "the", " ", "tridiagonal", " ", 
+    "matrix"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Anew", " ", "=", " ", 
+    RowBox[{"A", " ", "/", " ", 
+     RowBox[{"(", 
+      RowBox[{"\[CapitalDelta]x", "^", "2"}], ")"}]}]}], ";", 
+   RowBox[{"(*", 
+    RowBox[{"We", " ", "divide", " ", "the", " ", "matrix", " ", "by", " ", 
+     RowBox[{"deltax", "^", "2"}], " ", "in", " ", "order", " ", "to", " ", 
+     "get", " ", "the", " ", "matrix", " ", "of", " ", "the", " ", "theory"}],
+     "  ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"XX", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"X", "[", "j", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "M"}], "}"}]}], "]"}]}], " ", ";", " ", 
+   RowBox[{"(*", 
+    RowBox[{"We", " ", "define", " ", "the", " ", "unknown", " ", "vector"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Sol1", " ", "=", " ", 
+    RowBox[{"Solve", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Anew", ".", " ", "XX"}], " ", "\[Equal]", " ", "BB"}], ",", 
+      " ", "XX"}], "]"}]}], ";", 
+   RowBox[{"(*", 
+    RowBox[{"Solution", " ", "1", " ", "of", " ", "the", " ", "system"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Sol2", "=", 
+    RowBox[{"LinearSolve", "[", 
+     RowBox[{"Anew", ",", "BB"}], "]"}]}], ";", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Alternative", " ", "solution", " ", "of", " ", "the", " ", "system"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"XX", " ", "/.", " ", "Sol1"}], "]"}]}], ";"}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "We", " ", "add", " ", "the", " ", "two", " ", "boundary", " ", 
+     "values"}], ",", " ", 
+    RowBox[{
+     RowBox[{"being", " ", "these", " ", "u", 
+      RowBox[{"(", "0", ")"}]}], "=", 
+     RowBox[{
+      RowBox[{"u", 
+       RowBox[{"(", "1", ")"}]}], "=", 
+      RowBox[{"0.", " ", "We", " ", "add", " ", "u", 
+       RowBox[{"(", "0", ")"}], " ", "at", " ", "the", " ", "beggining", " ", 
+       "by", " ", "prepending", " ", "and", " ", "we", " ", "add", " ", "u", 
+       RowBox[{"(", "1", ")"}], " ", "at", " ", "the", " ", "end", " ", "by", 
+       " ", "appending"}]}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{"XX1", ",", "0"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Append", "[", 
+     RowBox[{"XX1", ",", "0"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"p1", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[CapitalDelta]x", " ", "j"}], ",", " ", 
+        RowBox[{"XX1", "[", 
+         RowBox[{"[", 
+          RowBox[{"j", "+", "1"}], "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], ",", " ", 
+    RowBox[{"Joined", "\[Rule]", " ", "True"}], ",", " ", 
+    RowBox[{"PlotRange", "\[Rule]", " ", "All"}], ",", " ", 
+    RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+     RowBox[{"{", 
+      RowBox[{"\"\<x\>\"", ",", " ", "\"\< \>\""}], "}"}]}], ",", 
+    RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", "Green", "}"}]}], ",", 
+    RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the FD solution\>\""}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<FD solution\>\"", "}"}]}]}], " ", "]"}]}]}], "Input",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.82496766453648*^9, {3.824967764557767*^9, 3.8249677981896076`*^9}, {
+   3.8249678348347683`*^9, 3.824967886725524*^9}, 3.824968275281636*^9, {
+   3.824968454997982*^9, 3.8249684831532536`*^9}, {3.825053658697304*^9, 
+   3.8250537649576035`*^9}, {3.8250540275732136`*^9, 
+   3.8250540544434156`*^9}, {3.8250541051221056`*^9, 3.825054111967059*^9}, {
+   3.825054210285153*^9, 3.8250542178204985`*^9}, {3.825054250990918*^9, 
+   3.825054272474881*^9}, {3.8250543054124117`*^9, 3.825054307302383*^9}, {
+   3.825054345440987*^9, 3.8250544180089707`*^9}, {3.8250545290108366`*^9, 
+   3.825054604212783*^9}, {3.8250547657984667`*^9, 3.825054773931163*^9}, 
+   3.825054861215478*^9, 3.8250550277097645`*^9, {3.825135594330338*^9, 
+   3.8251356342135897`*^9}, 3.8251357473855314`*^9, {3.825135837108105*^9, 
+   3.8251358375520716`*^9}, 3.825303891010037*^9, 3.8253039271186852`*^9, {
+   3.825304168175025*^9, 3.825304223835997*^9}, {3.8253043062805014`*^9, 
+   3.8253043158967075`*^9}, {3.825304347700637*^9, 3.8253043942667284`*^9}, {
+   3.8253112441983643`*^9, 3.8253112679778986`*^9}, 3.825311301738093*^9, {
+   3.8253121101512117`*^9, 3.825312112095071*^9}, {3.8253121951941447`*^9, 
+   3.825312239356493*^9}, {3.825314435693981*^9, 3.8253144415009193`*^9}},
+ CellLabel->"In[46]:=",ExpressionUUID->"501f9526-cf72-4d0a-ab77-ebe3d77caa1f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"MatrixForm", "[", "Anew", "]"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "In", " ", "order", " ", "to", " ", "see", " ", "how", " ", "the", " ", 
+    "matrix", " ", "Anew", " ", "is"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "BB", 
+  "]"}], "\[IndentingNewLine]", "Sol1", "\[IndentingNewLine]", 
+ RowBox[{"Sol1", "//", 
+  "N"}], "\[IndentingNewLine]", "Sol2", "\[IndentingNewLine]", 
+ RowBox[{"Sol2", "//", "N"}]}], "Input",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{{3.825054776814039*^9, 3.825054861215478*^9}, 
+   3.8250550277097645`*^9, {3.8250551789213114`*^9, 3.825055180998993*^9}, {
+   3.8251356678016453`*^9, 3.8251356750345836`*^9}, {3.8251357235001707`*^9, 
+   3.8251357246688957`*^9}, 3.825303891010037*^9, 3.8253039271186852`*^9, {
+   3.8253067600099554`*^9, 3.825306769812272*^9}, {3.8253112441983643`*^9, 
+   3.8253112679778986`*^9}, 3.825311301738093*^9},
+ CellLabel->
+  "In[735]:=",ExpressionUUID->"2fd13d72-0482-4d81-8e1b-53238907a133"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time2", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeFD", "=", 
+  RowBox[{"time2", "-", "time1"}]}]}], "Input",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{3.825054861215478*^9, 3.8250550277097645`*^9, 
+  3.825303891010037*^9, 3.8253039271186852`*^9, 3.825311267987686*^9, 
+  3.825311301738093*^9},
+ CellLabel->
+  "In[741]:=",ExpressionUUID->"fab008cf-58d9-4f4f-a67f-7871fe1284ba"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it now with NDSolve",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.825054957453024*^9, 3.825054988800352*^9}, 
+   3.825055050676175*^9, 3.825303891010037*^9, 3.825303963344137*^9, 
+   3.825311267987686*^9},ExpressionUUID->"e19f6c22-74a1-46cf-b924-\
+abbd9bc92b5f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time3", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sol1", "=", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+         RowBox[{"f", "[", "x", "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{
+         RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+      RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "We", " ", "solve", " ", "the", " ", "problem", " ", "with", " ", "the", 
+    " ", "command", " ", "NDSolve"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p2", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", " ", "Dashed"}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", 
+      "\"\<Plot of the solution obtained with NDSolve\>\""}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"{", "\"\<NDSolve Solution\>\"", "}"}]}]}], "]"}]}], 
+  RowBox[{"(*", 
+   RowBox[{"We", " ", "plot", " ", "the", " ", "solution", " ", "obtained"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time4", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeND", "=", 
+  RowBox[{"time4", "-", "time3"}]}]}], "Input",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.824967903961207*^9, 3.8249679548715224`*^9}, {
+   3.824968533355158*^9, 3.8249685349572864`*^9}, 3.825054988800352*^9, 
+   3.825055050677148*^9, {3.825055258775077*^9, 3.825055288706486*^9}, 
+   3.825303891010037*^9, 3.825303963344137*^9, {3.825306887193762*^9, 
+   3.825306918696274*^9}, 3.825311267987686*^9, {3.826027691038986*^9, 
+   3.8260276956684914`*^9}},ExpressionUUID->"68a60811-8f02-4f64-bc97-\
+0e6977e8d1ec"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We do the comparison between both solutions",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8253115448889313`*^9},ExpressionUUID->"09d5d585-b22a-4a73-bdca-\
+dc2ae86bc639"],
+
+Cell[BoxData[{
+ RowBox[{"Show", "[", 
+  RowBox[{"p1", ",", "p2", ",", 
+   RowBox[{
+   "PlotLabel", "\[Rule]", 
+    "\"\<Comparison between FD solution and NDSolve solution\>\""}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"errorFD", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"XX1", "[", 
+        RowBox[{"[", 
+         RowBox[{"j", "+", "1"}], "]"}], "]"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "]"}]}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "We", " ", "compute", " ", "the", " ", "error", " ", "of", " ", "the", " ",
+     "FD", " ", "approximation"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"errorND", "=", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Evaluate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "/.", 
+         RowBox[{"x", "->", 
+          RowBox[{"j", " ", "\[CapitalDelta]x"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "0", ",", 
+         RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "//", "N"}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "We", " ", "compute", " ", "the", " ", "error", " ", "of", " ", "the", " ",
+     "NDSolve", " ", "approximation"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Max", "[", "errorFD", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Max", "[", "errorND", "]"}], "\n", 
+ RowBox[{"Max", "[", 
+  RowBox[{"Abs", "[", 
+   RowBox[{"errorFD", "-", "errorND"}], "]"}], "]"}]}], "Input",
+ CellLabel->
+  "In[619]:=",ExpressionUUID->"9f0cbd8d-92d8-4e09-95d7-4397900b837d"]
+}, Closed]],
+
+Cell[TextData[StyleBox["f(x) = sin(x)exp(x)", "Subsection",
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.6, 0.4, 0.2]]], "Subsubsection",
+ CellChangeTimes->{{3.8249680606920767`*^9, 3.8249680698267684`*^9}, {
+  3.8250573536782155`*^9, 
+  3.825057354088208*^9}},ExpressionUUID->"1d73ec6a-3d8d-433a-9df1-\
+22c1843bac13"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it first with FD",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.825055542587083*^9},ExpressionUUID->"5551fc19-860c-47d7-b690-\
+3ebee7547914"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time1", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"Sin", "[", "x", "]"}], 
+    RowBox[{"Exp", "[", "x", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"M", " ", "=", " ", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalDelta]x", "=", " ", 
+   RowBox[{"1", "/", 
+    RowBox[{"(", 
+     RowBox[{"M", "+", "1"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"xx", "[", "j_", "]"}], ":=", " ", 
+   RowBox[{"j", " ", "\[CapitalDelta]x"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"BB", ":=", " ", 
+   RowBox[{"BB", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"xx", "[", "i", "]"}], "]"}], " ", ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "M"}], "}"}]}], "]"}]}]}], ";", " ", 
+  RowBox[{"A", ":=", " ", 
+   RowBox[{"A", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"SparseArray", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+          RowBox[{"i", "==", 
+           RowBox[{"j", "+", "1"}]}]}], "\[Rule]", 
+         RowBox[{"-", "1"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+      RowBox[{"SparseArray", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+          RowBox[{"i", "==", 
+           RowBox[{"j", "-", "1"}]}]}], "\[Rule]", 
+         RowBox[{"-", "1"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+      RowBox[{"SparseArray", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+          RowBox[{"i", "==", "j"}]}], "\[Rule]", "2"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"M", ",", "M"}], "}"}]}], "]"}]}], "//", 
+     "Normal"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Anew", " ", "=", " ", 
+   RowBox[{"A", " ", "/", " ", 
+    RowBox[{"(", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"X", "[", "j", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "M"}], "}"}]}], "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Sol1", " ", "=", " ", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Anew", ".", " ", "XX"}], " ", "\[Equal]", " ", "BB"}], ",", 
+     " ", "XX"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"XX1", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"XX", " ", "/.", " ", "Sol1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{"XX1", ",", "0"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Append", "[", 
+     RowBox[{"XX1", ",", "0"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"p1", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[CapitalDelta]x", " ", "j"}], ",", " ", 
+        RowBox[{"XX1", "[", 
+         RowBox[{"[", 
+          RowBox[{"j", "+", "1"}], "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], ",", " ", 
+    RowBox[{"Joined", "\[Rule]", " ", "True"}], ",", " ", 
+    RowBox[{"PlotRange", "\[Rule]", " ", "All"}], ",", " ", 
+    RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+     RowBox[{"{", 
+      RowBox[{"\"\<x\>\"", ",", " ", "\"\< \>\""}], "}"}]}], ",", 
+    RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", " ", 
+     RowBox[{"{", "Blue", "}"}]}], ",", 
+    RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the FD solution\>\""}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<FD solution\>\"", "}"}]}]}], " ", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8249681059754825`*^9, 3.8249681281485786`*^9}, {
+   3.8249682094456244`*^9, 3.8249682233947754`*^9}, 3.8249682645495305`*^9, {
+   3.8249685486252627`*^9, 3.8249685493785596`*^9}, {3.824968727345416*^9, 
+   3.824968775493295*^9}, {3.824969025546749*^9, 3.824969061288171*^9}, {
+   3.825055577361066*^9, 3.8250555798900595`*^9}, {3.8253116627464447`*^9, 
+   3.8253116642755747`*^9}, {3.825314449861017*^9, 3.825314493251048*^9}},
+ CellLabel->"In[89]:=",ExpressionUUID->"dac750fa-4844-47d4-8402-bdb96ae3db5a"],
+
+Cell[BoxData[{
+ RowBox[{"MatrixForm", "[", "BB", 
+  "]"}], "\[IndentingNewLine]", "Sol1", "\[IndentingNewLine]", 
+ RowBox[{"Sol1", "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.8253155732486253`*^9, 
+  3.8253155754786777`*^9}},ExpressionUUID->"fde177d4-113f-4e58-8ab4-\
+9a43b32bfb86"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time2", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeFD", "=", 
+  RowBox[{"time2", "-", "time1"}]}]}], "Input",
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"98c63c39-26be-45c5-8534-e6d8c99a953a"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it now with NDSolve",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8250556020846367`*^9},ExpressionUUID->"eb92e904-5150-4d0a-a985-\
+6fe458be780a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time3", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sol1", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p2", "=", 
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{"Evaluate", "[", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{
+    "PlotLabel", "\[Rule]", 
+     "\"\<Plot of the solution obtained with NDSolve for f2\>\""}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Brown", ",", " ", "Dashed"}], "}"}]}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<NDSolve Solution\>\"", "}"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time4", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeND", "=", 
+  RowBox[{"time4", "-", "time3"}]}]}], "Input",
+ CellChangeTimes->{
+  3.8249681523551545`*^9, {3.824968556611162*^9, 3.8249685573955736`*^9}, {
+   3.825055603994034*^9, 3.8250556049695997`*^9}, {3.825313851842063*^9, 
+   3.8253138538508387`*^9}, {3.825313885542284*^9, 3.8253139094624805`*^9}},
+ CellLabel->
+  "In[110]:=",ExpressionUUID->"28fac2c9-9109-4129-9a99-5b195c3867c1"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We do the comparisson between both solutions",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8250557120594625`*^9},ExpressionUUID->"1c49fed8-23f5-4ced-af43-\
+0fced6c5a5ca"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{"p1", ",", "p2", ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", 
+      "\"\<Comparison between FD solution and NDSolve solution\>\""}]}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"errorFD", "=", 
+     RowBox[{"N", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"XX1", "[", 
+          RowBox[{"[", 
+           RowBox[{"j", "+", "1"}], "]"}], "]"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "0", ",", 
+          RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"errorND", "=", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Evaluate", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "/.", 
+          RowBox[{"x", "->", 
+           RowBox[{"j", " ", "\[CapitalDelta]x"}]}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "0", ",", 
+          RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "//", "N"}]}], ";"}], 
+   "\n", 
+   RowBox[{"Max", "[", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"errorFD", "-", "errorND"}], "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.824968170375176*^9, {3.825055714885897*^9, 3.8250557159759483`*^9}, {
+   3.825314331666147*^9, 3.8253143320934334`*^9}},
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"c59500d0-01d4-41f3-9ca4-ef8379f0c7d7"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Problem 2",
+ FontWeight->"Bold"]], "Section",
+ CellChangeTimes->{{3.825053122978354*^9, 
+  3.8250531265366015`*^9}},ExpressionUUID->"a4f7559a-1145-46d0-bea2-\
+43997da505f7"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["b) Write a program in Mathematica that solves (5.4) \
+for n = 20, with two different functions and boundary conditions",
+ FontWeight->"Bold",
+ FontColor->RGBColor[1, 0.5, 0]]], "Subsection",
+ CellChangeTimes->{{3.824968592018433*^9, 3.824968598731634*^9}, {
+  3.8250531290424566`*^9, 3.8250531945865726`*^9}, {3.8250536158040895`*^9, 
+  3.82505362240895*^9}},ExpressionUUID->"f6a3644d-0f1e-45d2-8659-\
+2731bfe261e2"],
+
+Cell[TextData[StyleBox["f(x) = (3x+x^2)exp(x), u(0) = 2, u(1) = 1", \
+"Subsection",
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.6, 0.4, 0.2]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8249686222824955`*^9, {3.824968789984398*^9, 3.8249688108790565`*^9}, {
+   3.825057326108125*^9, 
+   3.8250573462680387`*^9}},ExpressionUUID->"1776288f-abb1-4392-9c65-\
+5dc8ab4d3dff"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it first with FD",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.825057081758004*^9},ExpressionUUID->"a1ce636a-d66b-4055-ab29-\
+9098d1976a03"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time1", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"3", "x"}], "+", 
+      RowBox[{"x", "^", "2"}]}], ")"}], 
+    RowBox[{"Exp", "[", "x", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"M", " ", "=", " ", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalDelta]x", "=", " ", 
+   RowBox[{"1", "/", 
+    RowBox[{"(", 
+     RowBox[{"M", "+", "1"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"xx", "[", "j_", "]"}], ":=", " ", 
+    RowBox[{"j", " ", "\[CapitalDelta]x"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", ":=", " ", 
+    RowBox[{"BB", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"xx", "[", "i", "]"}], "]"}], " ", ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "M"}], "}"}]}], "]"}]}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "=", 
+   RowBox[{
+    RowBox[{"BB", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "+", 
+    RowBox[{"2", "/", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", "[", 
+    RowBox[{"[", 
+     RowBox[{"Length", "[", "BB", "]"}], "]"}], "]"}], "=", 
+   RowBox[{
+    RowBox[{"BB", "[", 
+     RowBox[{"[", 
+      RowBox[{"Length", "[", "BB", "]"}], "]"}], "]"}], "+", 
+    RowBox[{"1", "/", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"A", ":=", " ", 
+  RowBox[{"A", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SparseArray", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+         RowBox[{"i", "==", 
+          RowBox[{"j", "+", "1"}]}]}], "\[Rule]", 
+        RowBox[{"-", "1"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+     RowBox[{"SparseArray", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+         RowBox[{"i", "==", 
+          RowBox[{"j", "-", "1"}]}]}], "\[Rule]", 
+        RowBox[{"-", "1"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+     RowBox[{"SparseArray", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+         RowBox[{"i", "==", "j"}]}], "\[Rule]", "2"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"M", ",", "M"}], "}"}]}], "]"}]}], "//", 
+    "Normal"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Anew", " ", "=", " ", 
+   RowBox[{"A", " ", "/", " ", 
+    RowBox[{"(", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"X", "[", "j", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "M"}], "}"}]}], "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Sol1", " ", "=", " ", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Anew", ".", " ", "XX"}], " ", "\[Equal]", " ", "BB"}], ",", 
+     " ", "XX"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"XX1", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"XX", " ", "/.", " ", "Sol1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{"XX1", ",", "2"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Append", "[", 
+     RowBox[{"XX1", ",", "1"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"p1", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[CapitalDelta]x", " ", "j"}], ",", " ", 
+        RowBox[{"XX1", "[", 
+         RowBox[{"[", 
+          RowBox[{"j", "+", "1"}], "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], ",", " ", 
+    RowBox[{"Joined", "\[Rule]", " ", "True"}], ",", " ", 
+    RowBox[{"PlotRange", "\[Rule]", " ", "All"}], ",", " ", 
+    RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+     RowBox[{"{", 
+      RowBox[{"\"\<x\>\"", ",", " ", "\"\< \>\""}], "}"}]}], ",", 
+    RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", 
+       RowBox[{"PointSize", "[", "Large", "]"}]}], "}"}]}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<FD solution\>\"", "}"}]}], ",", 
+    RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the FD solution\>\""}]}], 
+   " ", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8249688673115063`*^9, 3.82496888396249*^9}, {
+  3.82496893690143*^9, 3.8249689409384017`*^9}, {3.8249699889251122`*^9, 
+  3.824970003626363*^9}, {3.825057196518074*^9, 3.8250571977874537`*^9}, {
+  3.8253153433988543`*^9, 3.825315344739441*^9}, {3.8253161385098534`*^9, 
+  3.825316138900648*^9}},
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"930c91ab-18f8-4fc6-b3a8-968e45271dee"],
+
+Cell[BoxData[{
+ RowBox[{"MatrixForm", "[", "BB", 
+  "]"}], "\[IndentingNewLine]", "Sol1", "\[IndentingNewLine]", 
+ RowBox[{"Sol1", "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.8253155481886683`*^9, 
+  3.825315549348973*^9}},ExpressionUUID->"850d2d4c-0c82-42e9-baca-\
+ace186d9347d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time2", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeFD", "=", 
+  RowBox[{"time2", "-", "time1"}]}]}], "Input",
+ CellLabel->"In[23]:=",ExpressionUUID->"427705fd-b4c7-400f-886d-5ffae30d8182"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it now with NDSolve",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.825057100448309*^9},ExpressionUUID->"5e687e67-3e17-4391-a99c-\
+1733cb5ddc2e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time3", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sol1", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "2"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p2", "=", 
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{"Evaluate", "[", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", " ", "Dashed"}], "}"}]}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<Numerical Solution\>\"", "}"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time4", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeND", "=", 
+  RowBox[{"time4", "-", "time3"}]}]}], "Input",
+ CellChangeTimes->{{3.8249689686928835`*^9, 3.824968978522623*^9}, {
+  3.824969258881528*^9, 3.824969259843057*^9}, {3.825057102887169*^9, 
+  3.825057103797019*^9}},ExpressionUUID->"7a0554fe-2ee2-483e-abe2-\
+f61fd6a892d5"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We do the comparison between both solutions",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{{3.825057121386651*^9, 
+  3.8250571291730485`*^9}},ExpressionUUID->"adb8bb5d-14b5-41c9-9ec8-\
+ff7e20450fdb"],
+
+Cell[BoxData[{
+ RowBox[{"Show", "[", 
+  RowBox[{"p1", ",", "p2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"errorFD", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"XX1", "[", 
+        RowBox[{"[", 
+         RowBox[{"j", "+", "1"}], "]"}], "]"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"errorND", "=", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Evaluate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "/.", 
+        RowBox[{"x", "->", 
+         RowBox[{"j", " ", "\[CapitalDelta]x"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "//", "N"}]}], ";"}], "\n", 
+ RowBox[{"Max", "[", 
+  RowBox[{"Abs", "[", 
+   RowBox[{"errorFD", "-", "errorND"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{
+  3.8249690866525235`*^9, {3.824969120086857*^9, 3.824969121001541*^9}, {
+   3.8250571244279165`*^9, 
+   3.825057125328122*^9}},ExpressionUUID->"3ef72af8-19c6-4759-83b3-\
+c73b4cbc46c2"]
+}, Closed]],
+
+Cell[TextData[StyleBox["f(x) = sin(x)exp(x), u(0) = 5, u(1) =  -1", \
+"Subsection",
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.6, 0.4, 0.2]]], "Subsubsection",
+ CellChangeTimes->{{3.8249691353036437`*^9, 3.8249691605099287`*^9}, {
+  3.8250573319586573`*^9, 
+  3.825057338147107*^9}},ExpressionUUID->"5194f229-4d53-4fa9-b6ae-\
+ab79d80c0c64"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it first with FD",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8250572307071943`*^9},ExpressionUUID->"79731eff-580c-4005-80b2-\
+ce4836eb8aba"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time1", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"Sin", "[", "x", "]"}], 
+    RowBox[{"Exp", "[", "x", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"M", " ", "=", " ", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalDelta]x", "=", " ", 
+   RowBox[{"1", "/", 
+    RowBox[{"(", 
+     RowBox[{"M", "+", "1"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"xx", "[", "j_", "]"}], ":=", " ", 
+    RowBox[{"j", " ", "\[CapitalDelta]x"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", ":=", " ", 
+    RowBox[{"BB", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"xx", "[", "i", "]"}], "]"}], " ", ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "M"}], "}"}]}], "]"}]}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "=", 
+   RowBox[{
+    RowBox[{"BB", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "+", 
+    RowBox[{"5", "/", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"BB", "[", 
+    RowBox[{"[", 
+     RowBox[{"Length", "[", "BB", "]"}], "]"}], "]"}], "=", 
+   RowBox[{
+    RowBox[{"BB", "[", 
+     RowBox[{"[", 
+      RowBox[{"Length", "[", "BB", "]"}], "]"}], "]"}], "-", 
+    RowBox[{"1", "/", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"A", ":=", " ", 
+  RowBox[{"A", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SparseArray", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+         RowBox[{"i", "==", 
+          RowBox[{"j", "+", "1"}]}]}], "\[Rule]", 
+        RowBox[{"-", "1"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+     RowBox[{"SparseArray", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+         RowBox[{"i", "==", 
+          RowBox[{"j", "-", "1"}]}]}], "\[Rule]", 
+        RowBox[{"-", "1"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"M", ",", "M"}], "}"}]}], "]"}], " ", "+", " ", 
+     RowBox[{"SparseArray", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", "j_"}], "}"}], "/;", 
+         RowBox[{"i", "==", "j"}]}], "\[Rule]", "2"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"M", ",", "M"}], "}"}]}], "]"}]}], "//", 
+    "Normal"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Anew", " ", "=", " ", 
+   RowBox[{"A", " ", "/", " ", 
+    RowBox[{"(", 
+     RowBox[{"\[CapitalDelta]x", "^", "2"}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"X", "[", "j", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "M"}], "}"}]}], "]"}]}], " ", ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Sol1", " ", "=", " ", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Anew", ".", " ", "XX"}], " ", "\[Equal]", " ", "BB"}], ",", 
+     " ", "XX"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"XX1", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"XX", " ", "/.", " ", "Sol1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{"XX1", ",", "5"}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"XX1", " ", "=", " ", 
+    RowBox[{"Append", "[", 
+     RowBox[{"XX1", ",", 
+      RowBox[{"-", "1"}]}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"p1", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[CapitalDelta]x", " ", "j"}], ",", " ", 
+        RowBox[{"XX1", "[", 
+         RowBox[{"[", 
+          RowBox[{"j", "+", "1"}], "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], ",", " ", 
+    RowBox[{"Joined", "\[Rule]", " ", "True"}], ",", " ", 
+    RowBox[{"PlotRange", "\[Rule]", " ", "All"}], ",", " ", 
+    RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+     RowBox[{"{", 
+      RowBox[{"\"\<x\>\"", ",", " ", "\"\< \>\""}], "}"}]}], ",", 
+    RowBox[{"PlotMarkers", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", "Green", "}"}]}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<FD solution\>\"", "}"}]}]}], " ", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8249691797927923`*^9, 3.824969203866778*^9}, {
+  3.824969675124831*^9, 3.824969688446348*^9}, {3.8249700148603125`*^9, 
+  3.8249700246602764`*^9}, {3.825057242395484*^9, 3.825057244498019*^9}, {
+  3.825057299111026*^9, 
+  3.8250572997972035`*^9}},ExpressionUUID->"fc428b71-1e4a-4719-bf6a-\
+7a6bcba975fa"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"MatrixForm", "[", "A", "]"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "In", " ", "order", " ", "to", " ", "see", " ", "how", " ", "the", " ", 
+    "matrix", " ", "A", " ", "is"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MatrixForm", "[", "Anew", "]"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "In", " ", "order", " ", "to", " ", "see", " ", "how", " ", "the", " ", 
+    "matrix", " ", "Anew", " ", "is"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "BB", 
+  "]"}], "\[IndentingNewLine]", "Sol1", "\[IndentingNewLine]", 
+ RowBox[{"Sol1", "//", "N"}]}], "Input",ExpressionUUID->"23ae9414-654f-409a-\
+8219-9d4016b95848"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time2", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeFD", "=", 
+  RowBox[{"time2", "-", "time1"}]}]}], "Input",ExpressionUUID->"1de5af14-71f3-\
+422b-82a7-064099ab3fe3"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We solve it now with NDSolve",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8250572502169633`*^9},ExpressionUUID->"d479bb10-bbbf-49b4-bcc9-\
+2934ee55f898"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"time3", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sol1", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "5"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", 
+        RowBox[{"-", "1"}]}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p2", "=", 
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{"Evaluate", "[", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", " ", "Dashed"}], "}"}]}], ",", 
+    RowBox[{"PlotLegends", "\[Rule]", 
+     RowBox[{"{", "\"\<Numerical Solution\>\"", "}"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"time4", "=", 
+   RowBox[{"TimeUsed", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"timeND", "=", 
+  RowBox[{"time4", "-", "time3"}]}]}], "Input",
+ CellChangeTimes->{
+  3.8249692215245895`*^9, {3.824969265183255*^9, 3.82496926596128*^9}, {
+   3.824970079969629*^9, 3.8249700847875233`*^9}, {3.8250572527183647`*^9, 
+   3.825057253426101*^9}},ExpressionUUID->"f37c10a5-d612-4633-86c5-\
+da9e5bdd5037"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["We do the comparisson between both solutions",
+ FontWeight->"Bold",
+ FontColor->GrayLevel[0]]], "Subsubsection",
+ CellChangeTimes->{
+  3.8250572705469913`*^9},ExpressionUUID->"d0600e3f-e218-44a5-8d20-\
+fd15c1bc3109"],
+
+Cell[BoxData[{
+ RowBox[{"Show", "[", 
+  RowBox[{"p1", ",", "p2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"errorFD", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"XX1", "[", 
+        RowBox[{"[", 
+         RowBox[{"j", "+", "1"}], "]"}], "]"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"errorND", "=", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Evaluate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "[", "x", "]"}], "/.", "sol1"}], "/.", 
+        RowBox[{"x", "->", 
+         RowBox[{"j", " ", "\[CapitalDelta]x"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", 
+        RowBox[{"M", "+", "1"}]}], "}"}]}], "]"}], "//", "N"}]}], ";"}], "\n", 
+ RowBox[{"Max", "[", 
+  RowBox[{"Abs", "[", 
+   RowBox[{"errorFD", "-", "errorND"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{
+  3.8249692416379924`*^9, {3.825057273337047*^9, 
+   3.8250572741381035`*^9}},ExpressionUUID->"f77bc1b6-9b75-4b39-aaaa-\
+21a110ab28e4"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{949., 472.5},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"12.1 para Microsoft Windows (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fc42e9d3-8d67-4d0e-a260-c8599df467e1"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 296, 7, 104, "Chapter",ExpressionUUID->"482cb133-60d0-4dac-9f05-0829d3100593"],
+Cell[CellGroupData[{
+Cell[901, 33, 199, 4, 59, "Section",ExpressionUUID->"418cd4f5-dbf3-49ea-afd3-ad050db6a086"],
+Cell[CellGroupData[{
+Cell[1125, 41, 355, 7, 48, "Subsection",ExpressionUUID->"d8c7b55f-76bb-433a-9627-bba7db3e5b06"],
+Cell[1483, 50, 400, 7, 41, "Subsubsection",ExpressionUUID->"6a488f97-ea0b-4f96-9e8c-0f9a0f9aecf5",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}],
+Cell[CellGroupData[{
+Cell[1908, 61, 475, 8, 40, "Subsubsection",ExpressionUUID->"25474860-aff3-42dc-88e6-d8b31d36d1c5",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[2386, 71, 8427, 213, 640, "Input",ExpressionUUID->"501f9526-cf72-4d0a-ab77-ebe3d77caa1f",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[10816, 286, 1038, 20, 169, "Input",ExpressionUUID->"2fd13d72-0482-4d81-8e1b-53238907a133",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[11857, 308, 490, 11, 58, "Input",ExpressionUUID->"fab008cf-58d9-4f4f-a67f-7871fe1284ba",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[12384, 324, 394, 7, 33, "Subsubsection",ExpressionUUID->"e19f6c22-74a1-46cf-b924-abbd9bc92b5f",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}],
+Cell[12781, 333, 2225, 57, 186, "Input",ExpressionUUID->"68a60811-8f02-4f64-bc97-0e6977e8d1ec",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[15043, 395, 239, 5, 33, "Subsubsection",ExpressionUUID->"09d5d585-b22a-4a73-bdca-dc2ae86bc639"],
+Cell[15285, 402, 1672, 48, 199, "Input",ExpressionUUID->"9f0cbd8d-92d8-4e09-95d7-4397900b837d"]
+}, Closed]],
+Cell[16972, 453, 317, 6, 34, "Subsubsection",ExpressionUUID->"1d73ec6a-3d8d-433a-9df1-22c1843bac13"],
+Cell[CellGroupData[{
+Cell[17314, 463, 219, 5, 33, "Subsubsection",ExpressionUUID->"5551fc19-860c-47d7-b690-3ebee7547914"],
+Cell[17536, 470, 4887, 135, 657, "Input",ExpressionUUID->"dac750fa-4844-47d4-8402-bdb96ae3db5a"],
+Cell[22426, 607, 284, 6, 95, "Input",ExpressionUUID->"fde177d4-113f-4e58-8ab4-9a43b32bfb86"],
+Cell[22713, 615, 273, 7, 62, "Input",ExpressionUUID->"98c63c39-26be-45c5-8534-e6d8c99a953a"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[23023, 627, 224, 5, 33, "Subsubsection",ExpressionUUID->"eb92e904-5150-4d0a-a985-6fe458be780a"],
+Cell[23250, 634, 1756, 48, 237, "Input",ExpressionUUID->"28fac2c9-9109-4129-9a99-5b195c3867c1"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[25043, 687, 240, 5, 33, "Subsubsection",ExpressionUUID->"1c49fed8-23f5-4ced-af43-0fced6c5a5ca"],
+Cell[25286, 694, 1481, 43, 200, "Input",ExpressionUUID->"c59500d0-01d4-41f3-9ca4-ef8379f0c7d7"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26828, 744, 197, 4, 59, "Section",ExpressionUUID->"a4f7559a-1145-46d0-bea2-43997da505f7"],
+Cell[CellGroupData[{
+Cell[27050, 752, 440, 7, 72, "Subsection",ExpressionUUID->"f6a3644d-0f1e-45d2-8659-2731bfe261e2"],
+Cell[27493, 761, 368, 8, 41, "Subsubsection",ExpressionUUID->"1776288f-abb1-4392-9c65-5dc8ab4d3dff"],
+Cell[CellGroupData[{
+Cell[27886, 773, 219, 5, 33, "Subsubsection",ExpressionUUID->"a1ce636a-d66b-4055-ab29-9098d1976a03"],
+Cell[28108, 780, 5551, 166, 605, "Input",ExpressionUUID->"930c91ab-18f8-4fc6-b3a8-968e45271dee"],
+Cell[33662, 948, 282, 6, 88, "Input",ExpressionUUID->"850d2d4c-0c82-42e9-baca-ace186d9347d"],
+Cell[33947, 956, 269, 6, 58, "Input",ExpressionUUID->"427705fd-b4c7-400f-886d-5ffae30d8182"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[34253, 967, 222, 5, 33, "Subsubsection",ExpressionUUID->"5e687e67-3e17-4391-a99c-1733cb5ddc2e"],
+Cell[34478, 974, 1533, 43, 202, "Input",ExpressionUUID->"7a0554fe-2ee2-483e-abe2-f61fd6a892d5"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[36048, 1022, 263, 5, 33, "Subsubsection",ExpressionUUID->"adb8bb5d-14b5-41c9-9ec8-ff7e20450fdb"],
+Cell[36314, 1029, 1221, 36, 147, "Input",ExpressionUUID->"3ef72af8-19c6-4759-83b3-c73b4cbc46c2"]
+}, Closed]],
+Cell[37550, 1068, 341, 7, 34, "Subsubsection",ExpressionUUID->"5194f229-4d53-4fa9-b6ae-ab79d80c0c64"],
+Cell[CellGroupData[{
+Cell[37916, 1079, 221, 5, 33, "Subsubsection",ExpressionUUID->"79731eff-580c-4005-80b2-ce4836eb8aba"],
+Cell[38140, 1086, 5278, 159, 693, "Input",ExpressionUUID->"fc428b71-1e4a-4719-bf6a-7a6bcba975fa"],
+Cell[43421, 1247, 673, 16, 165, "Input",ExpressionUUID->"23ae9414-654f-409a-8219-9d4016b95848"],
+Cell[44097, 1265, 247, 6, 62, "Input",ExpressionUUID->"1de5af14-71f3-422b-82a7-064099ab3fe3"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[44381, 1276, 224, 5, 33, "Subsubsection",ExpressionUUID->"d479bb10-bbbf-49b4-bcc9-2934ee55f898"],
+Cell[44608, 1283, 1587, 45, 202, "Input",ExpressionUUID->"f37c10a5-d612-4633-86c5-da9e5bdd5037"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[46232, 1333, 240, 5, 33, "Subsubsection",ExpressionUUID->"d0600e3f-e218-44a5-8d20-fd15c1bc3109"],
+Cell[46475, 1340, 1171, 35, 147, "Input",ExpressionUUID->"f77bc1b6-9b75-4b39-aaaa-21a110ab28e4"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

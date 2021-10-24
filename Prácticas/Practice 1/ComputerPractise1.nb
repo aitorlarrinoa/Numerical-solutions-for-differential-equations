@@ -1,0 +1,1869 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     68709,       1861]
+NotebookOptionsPosition[     61921,       1743]
+NotebookOutlinePosition[     62321,       1759]
+CellTagsIndexPosition[     62278,       1756]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[StyleBox["Computer practise 1. Group 2: Nerea Andia, Ander \
+Cano, Mikel Lamela and Aitor Larrinoa", "Chapter"]], "Section",
+ CellChangeTimes->{{3.8211745254622293`*^9, 3.8211745381881323`*^9}, {
+  3.8211746279112034`*^9, 
+  3.8211746503007507`*^9}},ExpressionUUID->"fc813aa4-cf21-4f72-8de6-\
+cf6385e6f135"],
+
+Cell["1.1 The Gibbs phenomenon.", "Section",
+ CellChangeTimes->{{3.821175836696833*^9, 
+  3.821175861175479*^9}},ExpressionUUID->"7a3b8961-5e87-47b5-b6d5-\
+1848b37a432f"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["a) Write a program un Mathematica that:\n", "Subsection"],
+ StyleBox["\n\ta1) Define the finite approximation to the Fourier series \
+solution (1.1) for the \tfollowing function.", "Subsubsection"]
+}], "Section",
+ CellChangeTimes->{{3.821161939554323*^9, 3.821161959466193*^9}, {
+  3.821162131477062*^9, 3.821162132622078*^9}, {3.8211746532392693`*^9, 
+  3.8211747605364137`*^9}},ExpressionUUID->"19b6f078-a70f-496f-9342-\
+4cf6585b6ba0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"L", " ", "=", " ", "Pi"}], ";", " ", 
+   RowBox[{"inf", " ", "=", " ", 
+    RowBox[{"-", "L"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"per", " ", "=", " ", 
+   RowBox[{"L", "-", "inf"}]}], ";", 
+  RowBox[{"sup", " ", "=", " ", 
+   RowBox[{"inf", " ", "+", " ", "per"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fact", " ", "=", " ", 
+   RowBox[{"2", " ", 
+    RowBox[{"Pi", "/", " ", "per"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+    RowBox[{"Piecewise", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"x", "+", "Pi"}], " ", ")"}], "/", " ", "Pi"}], ",", " ", 
+         RowBox[{
+          RowBox[{"-", "Pi"}], "<", "x", "\[LessEqual]", " ", "0"}]}], "}"}], 
+       ",", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"Pi", "-", "x"}], ")"}], "/", "Pi"}], ",", 
+         RowBox[{"0", "<", "x", "\[LessEqual]", " ", "Pi"}]}], "}"}]}], "}"}],
+      "]"}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{"We", " ", "define", " ", "the", " ", "given", " ", 
+    RowBox[{"function", "."}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"f", "[", "x", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", 
+     RowBox[{"-", "L"}], ",", "L"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", "[", "n_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"a", "[", "n", "]"}], "=", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "/", "per"}], ")"}], " ", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"f", "[", "t", "]"}], " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"fact", " ", "n", " ", "t"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "inf", ",", "sup"}], "}"}]}], "]"}]}]}]}], ";"}], 
+  RowBox[{"(*", "coefficients", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", "[", "n_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"b", "[", "n", "]"}], "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "/", "per"}], ")"}], " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "[", "t", "]"}], " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"fact", " ", "n", " ", "t"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "inf", ",", "sup"}], "}"}]}], "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "k_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"A", "[", "k", "]"}], "=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"k", " ", ">", " ", "0"}], ",", " ", 
+      RowBox[{"a", "[", "k", "]"}], ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "/", "2"}], ")"}], 
+       RowBox[{"a", "[", "0", "]"}]}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"B", "[", "k_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"B", "[", "k", "]"}], "=", 
+    RowBox[{"b", "[", "k", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"F", "[", 
+    RowBox[{"x_", ",", "n_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"F", "[", 
+     RowBox[{"x", ",", "n"}], "]"}], "=", " ", 
+    RowBox[{"Simplify", "[", 
+     RowBox[{"Sum", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"A", "[", "k", "]"}], " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"fact", " ", "k", " ", "x"}], "]"}]}], "+", 
+        RowBox[{
+         RowBox[{"B", "[", "k", "]"}], " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"fact", " ", "k", " ", "x"}], "]"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "0", ",", "n"}], "}"}]}], "]"}], "]"}]}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.56233626046875*^9, 3.562336285859375*^9}, 
+   3.56233634621875*^9, {3.562336413609375*^9, 3.562336443734375*^9}, {
+   3.56233667453125*^9, 3.562336728265625*^9}, {3.56233675909375*^9, 
+   3.562336788828125*^9}, {3.562336918640625*^9, 3.56233697159375*^9}, 
+   3.5810548971875*^9, 3.581054975078125*^9, {3.5810564749375*^9, 
+   3.581056475765625*^9}, {3.592132211796875*^9, 3.59213222971875*^9}, {
+   3.592132857671875*^9, 3.592132878203125*^9}, {3.592133627640625*^9, 
+   3.592133808265625*^9}, {3.59213384334375*^9, 3.59213396871875*^9}, {
+   3.59213453115625*^9, 3.5921345331875*^9}, {3.592141561046875*^9, 
+   3.59214157875*^9}, {3.592143302078125*^9, 3.592143302359375*^9}, {
+   3.592143419171875*^9, 3.592143553515625*^9}, {3.592144606890625*^9, 
+   3.592144618625*^9}, {3.5921452134375*^9, 3.592145245125*^9}, {
+   3.592145327953125*^9, 3.592145399859375*^9}, {3.59214571009375*^9, 
+   3.592145713421875*^9}, {3.59214582428125*^9, 3.592145848359375*^9}, {
+   3.5921460685*^9, 3.592146072796875*^9}, 3.59214613675*^9, {
+   3.592146210484375*^9, 3.5921462105625*^9}, {3.592146245203125*^9, 
+   3.592146294421875*^9}, {3.59214648725*^9, 3.592146500421875*^9}, {
+   3.592146668484375*^9, 3.592146688546875*^9}, {3.592197272984375*^9, 
+   3.59219727934375*^9}, {3.592197310984375*^9, 3.592197321015625*^9}, {
+   3.59219739328125*^9, 3.59219739465625*^9}, {3.592197689875*^9, 
+   3.5921977029375*^9}, {3.59219878375*^9, 3.592198815640625*^9}, {
+   3.59219936115625*^9, 3.592199367296875*^9}, {3.592201606046875*^9, 
+   3.592202021515625*^9}, {3.592202809484375*^9, 3.592202850359375*^9}, {
+   3.592202887109375*^9, 3.59220289546875*^9}, {3.592203012859375*^9, 
+   3.59220302784375*^9}, {3.592203129875*^9, 3.592203133828125*^9}, 
+   3.592206977125*^9, {3.592207037703125*^9, 3.592207091484375*^9}, {
+   3.592207127484375*^9, 3.59220716275*^9}, {3.59220719478125*^9, 
+   3.59220722196875*^9}, {3.59220769453125*^9, 3.592207707203125*^9}, {
+   3.592209308671875*^9, 3.592209435875*^9}, {3.592209580640625*^9, 
+   3.592209649046875*^9}, {3.592209790359375*^9, 3.592209842734375*^9}, {
+   3.592209875984375*^9, 3.592209928203125*^9}, {3.592211316859375*^9, 
+   3.59221132034375*^9}, {3.592638468296875*^9, 3.592638471140625*^9}, {
+   3.5926387071875*^9, 3.59263874078125*^9}, 3.598272097765625*^9, {
+   3.600430812449*^9, 3.60043081654275*^9}, {3.6629808359163218`*^9, 
+   3.662980860970827*^9}, {3.694757876452544*^9, 3.6947578870766068`*^9}, {
+   3.821161521201147*^9, 3.8211615598513036`*^9}, {3.8211617716498632`*^9, 
+   3.8211617719722815`*^9}, {3.8211618868589134`*^9, 
+   3.8211618870943604`*^9}, {3.82117477232565*^9, 3.8211748090480127`*^9}, {
+   3.822053401241457*^9, 3.8220534216650314`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"bbfef6d0-1cc8-436c-b8b3-fe2420b12616"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+a2) Plot the original function and the Fourier representation which includes \
+only the first term\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8211619719587917`*^9, 3.8211619885649333`*^9}, {
+  3.821174828035579*^9, 
+  3.821174898264577*^9}},ExpressionUUID->"e262f64a-a7c4-49d6-8da8-\
+a4496f0f3447"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "1"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", "\"\<Plot of the first term\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.592202047359375*^9, 3.59220206121875*^9}, {
+   3.592202315828125*^9, 3.59220237259375*^9}, 3.59221179125*^9, {
+   3.821174908063527*^9, 3.821174925765758*^9}, {3.8220535311823697`*^9, 
+   3.822053537774596*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"e9ff367c-7985-4087-87a7-140313124deb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+a3) Plot the original function and the Fourier representation which includes \
+only the first five terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.821162045382395*^9, 3.821162055199335*^9}, {
+  3.8211749678899293`*^9, 
+  3.821174998523927*^9}},ExpressionUUID->"7e0b1deb-57ea-499f-8da7-\
+d35a8f5d2cdd"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "5"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", 
+    "\"\<Plot of the first five terms.\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.592202047359375*^9, 3.59220206121875*^9}, {
+   3.592202315828125*^9, 3.59220237259375*^9}, {3.592207289453125*^9, 
+   3.59220731546875*^9}, 3.59220806796875*^9, 3.592208823890625*^9, 
+   3.59221179784375*^9, {3.8211749856092696`*^9, 3.8211749956326714`*^9}, 
+   3.821175638623107*^9, 3.8220535643674107`*^9},
+ CellLabel->"In[12]:=",ExpressionUUID->"4fb0d12a-6611-4ebd-bd41-bac20458234e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["b) Write a program in Mathematica that", "Subsection",
+ CellChangeTimes->{{3.821175026275733*^9, 
+  3.8211750433776407`*^9}},ExpressionUUID->"7a852ec4-406d-440b-bd07-\
+0550baf44a7d"],
+
+Cell["\<\
+We are going to split the b) part in two. First we are going to do it with \
+the first function, and then we are going to do it with the scond function.\
+\>", "Text",
+ CellChangeTimes->{
+  3.8211754522538*^9, {3.821175485343652*^9, 3.821175500800508*^9}, {
+   3.8216829837442827`*^9, 
+   3.8216829840338287`*^9}},ExpressionUUID->"cb5f9181-2e15-4e69-87aa-\
+c7d8194dcc3e"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.1) Define the finite aproximation to the Fourier series solution (1.1) for \
+the following function.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.821162537204389*^9, 3.821162542872677*^9}, {
+  3.8211753032321205`*^9, 
+  3.821175336325507*^9}},ExpressionUUID->"1898e8a0-5d54-4cb5-b075-\
+813924013c8d"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"L", " ", "=", " ", "Pi"}], ";", " ", 
+   RowBox[{"inf", " ", "=", " ", 
+    RowBox[{"-", "L"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"per", " ", "=", " ", 
+   RowBox[{"L", "-", "inf"}]}], ";", 
+  RowBox[{"sup", " ", "=", " ", 
+   RowBox[{"inf", " ", "+", " ", "per"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fact", " ", "=", " ", 
+   RowBox[{"2", " ", 
+    RowBox[{"Pi", "/", " ", "per"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+    RowBox[{"Piecewise", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", " ", 
+         RowBox[{
+          RowBox[{"-", "Pi"}], "<", "x", "\[LessEqual]", " ", 
+          RowBox[{"Pi", "/", "8"}]}]}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{
+          RowBox[{"Pi", "/", "8"}], "<", "x", "\[LessEqual]", " ", 
+          RowBox[{"7", "*", 
+           RowBox[{"Pi", "/", "8"}]}]}]}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"7", "*", 
+           RowBox[{"Pi", "/", "8"}]}], "<", "x", "\[LessEqual]", " ", 
+          "Pi"}]}], "}"}]}], "}"}], "]"}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{"We", " ", "define", " ", "the", " ", "first", " ", 
+    RowBox[{"function", "."}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"f", "[", "x", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", 
+     RowBox[{"-", "L"}], ",", "4"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"a", "[", "n_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"a", "[", "n", "]"}], "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "/", "per"}], ")"}], " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "[", "t", "]"}], " ", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"fact", " ", "n", " ", "t"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "inf", ",", "sup"}], "}"}]}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", "[", "n_", "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"b", "[", "n", "]"}], "=", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "/", "per"}], ")"}], " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "[", "t", "]"}], " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"fact", " ", "n", " ", "t"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "inf", ",", "sup"}], "}"}]}], "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "k_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"A", "[", "k", "]"}], "=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"k", " ", ">", " ", "0"}], ",", " ", 
+      RowBox[{"a", "[", "k", "]"}], ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "/", "2"}], ")"}], 
+       RowBox[{"a", "[", "0", "]"}]}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"B", "[", "k_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"B", "[", "k", "]"}], "=", 
+    RowBox[{"b", "[", "k", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"F", "[", 
+    RowBox[{"x_", ",", "n_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"F", "[", 
+     RowBox[{"x", ",", "n"}], "]"}], "=", 
+    RowBox[{"Simplify", "[", 
+     RowBox[{"Sum", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"A", "[", "k", "]"}], " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"fact", " ", "k", " ", "x"}], "]"}]}], "+", 
+        RowBox[{
+         RowBox[{"B", "[", "k", "]"}], " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"fact", " ", "k", " ", "x"}], "]"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "0", ",", "n"}], "}"}]}], "]"}], "]"}]}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.56233626046875*^9, 3.562336285859375*^9}, 
+   3.56233634621875*^9, {3.562336413609375*^9, 3.562336443734375*^9}, {
+   3.56233667453125*^9, 3.562336728265625*^9}, {3.56233675909375*^9, 
+   3.562336788828125*^9}, {3.562336918640625*^9, 3.56233697159375*^9}, 
+   3.5810548971875*^9, 3.581054975078125*^9, {3.5810564749375*^9, 
+   3.581056475765625*^9}, {3.592132211796875*^9, 3.59213222971875*^9}, {
+   3.592132857671875*^9, 3.592132878203125*^9}, {3.592133627640625*^9, 
+   3.592133808265625*^9}, {3.59213384334375*^9, 3.59213396871875*^9}, {
+   3.59213453115625*^9, 3.5921345331875*^9}, {3.592141561046875*^9, 
+   3.59214157875*^9}, {3.592143302078125*^9, 3.592143302359375*^9}, {
+   3.592143419171875*^9, 3.592143553515625*^9}, {3.592144606890625*^9, 
+   3.592144618625*^9}, {3.5921452134375*^9, 3.592145245125*^9}, {
+   3.592145327953125*^9, 3.592145399859375*^9}, {3.59214571009375*^9, 
+   3.592145713421875*^9}, {3.59214582428125*^9, 3.592145848359375*^9}, {
+   3.5921460685*^9, 3.592146072796875*^9}, 3.59214613675*^9, {
+   3.592146210484375*^9, 3.5921462105625*^9}, {3.592146245203125*^9, 
+   3.592146294421875*^9}, {3.59214648725*^9, 3.592146500421875*^9}, {
+   3.592146668484375*^9, 3.592146688546875*^9}, {3.592197272984375*^9, 
+   3.59219727934375*^9}, {3.592197310984375*^9, 3.592197321015625*^9}, {
+   3.59219739328125*^9, 3.59219739465625*^9}, {3.592197689875*^9, 
+   3.5921977029375*^9}, {3.59219878375*^9, 3.592198815640625*^9}, {
+   3.59219936115625*^9, 3.592199367296875*^9}, {3.592201606046875*^9, 
+   3.592202021515625*^9}, {3.592202809484375*^9, 3.592202850359375*^9}, {
+   3.592202887109375*^9, 3.59220289546875*^9}, {3.592203012859375*^9, 
+   3.59220302784375*^9}, {3.592203129875*^9, 3.592203133828125*^9}, 
+   3.592206977125*^9, {3.592207037703125*^9, 3.592207091484375*^9}, {
+   3.592207127484375*^9, 3.59220716275*^9}, {3.59220719478125*^9, 
+   3.59220722196875*^9}, {3.59220769453125*^9, 3.592207707203125*^9}, {
+   3.592209308671875*^9, 3.592209435875*^9}, {3.592209580640625*^9, 
+   3.592209649046875*^9}, {3.592209790359375*^9, 3.592209842734375*^9}, {
+   3.592209875984375*^9, 3.592209953125*^9}, {3.592211339546875*^9, 
+   3.59221134246875*^9}, {3.5926387541875*^9, 3.59263878340625*^9}, 
+   3.59827237196875*^9, {3.8211622147075386`*^9, 3.8211622427625313`*^9}, {
+   3.8211624386151137`*^9, 3.8211624403173375`*^9}, {3.82117551622834*^9, 
+   3.8211755718832984`*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"dfef130c-da12-4cae-95d8-8ab2affeb716"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.1.2) Plot the original function and the Fourier representation which \
+includes only the first five terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8211623582582426`*^9, 3.8211623620508595`*^9}, {
+  3.821162550498351*^9, 3.8211625536838727`*^9}, {3.821175588990074*^9, 
+  3.8211756170515556`*^9}},ExpressionUUID->"1567fe77-507b-4198-b03e-\
+3c3d4a7b5541"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "5"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", 
+    "\"\<Plot of the first five terms.\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8211756260879707`*^9, 3.8211756324243965`*^9}, {
+  3.8220537063317165`*^9, 3.822053708042569*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"aa663ce3-a177-411f-9724-021a7e3224b1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.1.3) Plot the original function and the Fourier representation which \
+includes only the first ten terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.821162782288926*^9, 3.821162785268279*^9}, {
+  3.8211756491119347`*^9, 
+  3.8211756613062735`*^9}},ExpressionUUID->"cf85b6b8-d3aa-4635-9f23-\
+db60195c58bd"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "10"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", "\"\<Plot of the first ten terms.\>\""}],
+    " ", ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8211627943418484`*^9, 3.821162798001026*^9}, {
+  3.8211756989292727`*^9, 3.821175707785506*^9}, {3.822053715901062*^9, 
+  3.8220537167823257`*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"504ccdcb-2924-47fb-9bc9-dbdfbbe88526"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.1.4) Plot the original function and the Fourier representation which \
+includes only the first twenty terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8211628027877097`*^9, 3.8211628107852974`*^9}, {
+  3.8211756687835717`*^9, 
+  3.821175675815874*^9}},ExpressionUUID->"adb472b9-d9df-4103-b89d-\
+db597f3ab761"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "20"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", 
+    "\"\<Plot of the first twenty terms.\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8211628153162374`*^9, 3.821162819899767*^9}, {
+  3.8211756832917857`*^9, 3.821175694027265*^9}, {3.822053719881804*^9, 
+  3.822053720901411*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"a21d8e30-daa7-4f03-9676-741abec5a4aa"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.2.1) Define the finite aproximation to the Fourier series solution (1.1) \
+for the following function.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8211628568879676`*^9, 3.821162867424158*^9}, {
+  3.8211757331710124`*^9, 
+  3.821175735682168*^9}},ExpressionUUID->"892f14b8-b0b3-45cf-b673-\
+c5c81d32c4c2"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"L", " ", "=", " ", "4"}], ";", " ", 
+   RowBox[{"inf", " ", "=", " ", "0"}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"per", " ", "=", " ", 
+   RowBox[{"L", "-", "inf"}]}], ";", 
+  RowBox[{"sup", " ", "=", " ", 
+   RowBox[{"inf", " ", "+", " ", "per"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fact", " ", "=", " ", 
+   RowBox[{"2", " ", 
+    RowBox[{"Pi", "/", " ", "per"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"2", ",", " ", 
+        RowBox[{"0", "\[LessEqual]", " ", "x", "\[LessEqual]", " ", "0"}]}], 
+       "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", " ", 
+        RowBox[{"0", "<", "x", "<", " ", "2"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", 
+        RowBox[{"2", "\[LessEqual]", "  ", "x", "\[LessEqual]", "  ", "2"}]}],
+        "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", 
+        RowBox[{"2", "<", "x", "\[LessEqual]", " ", "4"}]}], "}"}]}], "}"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"f", "[", "x", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "L"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "3"}], "}"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"a", "[", "n_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"a", "[", "n", "]"}], "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "/", "per"}], ")"}], " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "[", "t", "]"}], " ", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"fact", " ", "n", " ", "t"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "inf", ",", "sup"}], "}"}]}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", "[", "n_", "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"b", "[", "n", "]"}], "=", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "/", "per"}], ")"}], " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"f", "[", "t", "]"}], " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"fact", " ", "n", " ", "t"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "inf", ",", "sup"}], "}"}]}], "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "k_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"A", "[", "k", "]"}], "=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"k", " ", ">", " ", "0"}], ",", " ", 
+      RowBox[{"a", "[", "k", "]"}], ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "/", "2"}], ")"}], 
+       RowBox[{"a", "[", "0", "]"}]}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"B", "[", "k_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"B", "[", "k", "]"}], "=", 
+    RowBox[{"b", "[", "k", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"F", "[", 
+    RowBox[{"x_", ",", "n_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"F", "[", 
+     RowBox[{"x", ",", "n"}], "]"}], "=", 
+    RowBox[{"Simplify", "[", 
+     RowBox[{"Sum", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"A", "[", "k", "]"}], " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"fact", " ", "k", " ", "x"}], "]"}]}], "+", 
+        RowBox[{
+         RowBox[{"B", "[", "k", "]"}], " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"fact", " ", "k", " ", "x"}], "]"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "0", ",", "n"}], "}"}]}], "]"}], "]"}]}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.82116289644773*^9, 3.8211629193711324`*^9}, {
+  3.821162975618578*^9, 3.821163004431713*^9}, {3.8211630586047363`*^9, 
+  3.82116315351346*^9}, {3.8220549628527493`*^9, 
+  3.8220549676032743`*^9}},ExpressionUUID->"63df3a27-3094-44f5-ae31-\
+754ad11c4338"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.2.2) Plot the original function and the Fourier representation which \
+includes only the first five terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8211631964858723`*^9, 3.8211632039984026`*^9}, {
+  3.821175752856441*^9, 
+  3.8211757532459555`*^9}},ExpressionUUID->"e866298b-ac2d-4e09-87f9-\
+a7f407a80792"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "5"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", 
+    "\"\<Plot of the first five terms.\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.821175759917845*^9, 3.821175765474224*^9}, {
+  3.822053727802642*^9, 3.822053728671462*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"8c33f56c-dd23-4d41-b38f-48d01ee3034a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.2.3) Plot the original function and the Fourier representation which \
+includes only the first ten terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8211632518743396`*^9, 3.821163254072564*^9}, {
+  3.8211757735541306`*^9, 
+  3.8211757772608585`*^9}},ExpressionUUID->"6d64eca3-5ece-43a2-a4db-\
+d57bb39e130a"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "10"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", "\"\<Plot of the first ten terms.\>\""}],
+    ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], " ", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8211632579046836`*^9, 3.821163262682762*^9}, {
+  3.821175782903281*^9, 3.8211757883914633`*^9}, {3.8220537345829735`*^9, 
+  3.8220537355765443`*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"1e6eecb8-fba3-4587-9950-f830f215bae5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b.2.4) Plot the original function and the Fourier representation which \
+includes only the first twenty terms\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.821163270132366*^9, 3.821163273494257*^9}, {
+  3.8211758097296925`*^9, 
+  3.8211758182464156`*^9}},ExpressionUUID->"ae0f0103-d96d-4466-9774-\
+5785260a6ca1"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", " ", 
+     RowBox[{"F", "[", 
+      RowBox[{"x", ",", "20"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "inf", ",", "sup"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", " ", "\"\<F\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", " ", "\[Rule]", " ", 
+    "\"\<Plot of the first twenty terms.\>\""}], " ", ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8211632769211435`*^9, 3.8211632808279357`*^9}, {
+  3.821175797449819*^9, 3.8211758051565633`*^9}, {3.822053738568345*^9, 
+  3.822053739411275*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"14e219ae-8e1d-43a9-8e2a-0b8bab4d98e3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1.2 Solving ODE", "Section",
+ CellChangeTimes->{{3.8211633004332013`*^9, 3.8211633102548857`*^9}, {
+  3.821175827068272*^9, 
+  3.8211758271296864`*^9}},ExpressionUUID->"dc4d98d4-3e39-42d9-b447-\
+c9329fbeeb18"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["a) Write a programm in Mathematica that uses the \
+commands DSolve and NDSolve to solve exactly and numerically equation (1.7) \
+the next cases. Then, compare in a plot the two obtained solutions.", \
+"Subsection"]], "Subsubsection",
+ CellChangeTimes->{{3.8211633854274273`*^9, 3.8211633876225667`*^9}, {
+  3.821332806708378*^9, 3.821332887534198*^9}, {3.821332944344344*^9, 
+  3.8213329690795546`*^9}},ExpressionUUID->"953f46e9-28d5-494c-96bf-\
+54ab16112779"],
+
+Cell["\<\
+We are going to separe different cases, but first, let\[CloseCurlyQuote]s \
+define the functions we are going to use.\
+\>", "Text",
+ CellChangeTimes->{{3.821332895419222*^9, 
+  3.8213329337723794`*^9}},ExpressionUUID->"7c2729d4-4437-4f6a-b86c-\
+4a960a1e1653"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8211635432242966`*^9, 3.821163565311018*^9}, 
+   3.8211644201190133`*^9},
+ CellLabel->"In[89]:=",ExpressionUUID->"25d8732c-86ae-4bbc-9b0c-d59aafad3645"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f1", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"3", "x"}], "+", 
+     RowBox[{"x", "^", "2"}]}], ")"}], "*", 
+   RowBox[{"Exp", "[", "x", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.821163533471367*^9, 3.821163538696466*^9}, {
+  3.8211635798897147`*^9, 3.8211635911764727`*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"9f41639c-7ac7-458c-85bb-fb181f3b5e83"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f2", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Sin", "[", "x", "]"}], "*", 
+   RowBox[{"Exp", "[", "x", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.8211636053984156`*^9, 3.8211636246719217`*^9}},
+ CellLabel->"In[91]:=",ExpressionUUID->"318bb311-488d-4df1-89b8-a18a6a7055dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["a1) First case: k(x) = 1 and f1(x)", "Subsubsection",
+ CellChangeTimes->{{3.8213329773753643`*^9, 
+  3.821332998202735*^9}},ExpressionUUID->"fd21cab8-1287-4991-bba3-\
+c296938e5ebb"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol11", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol11", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot11", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol11"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Green"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot11", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol11"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed"}], "}"}]}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot11", ",", "nplot11", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the first case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.821163664570423*^9, 3.821163833840745*^9}, {
+  3.821163871264694*^9, 3.821163891654686*^9}, {3.8213330242607965`*^9, 
+  3.8213330703975697`*^9}, {3.821333183667071*^9, 3.821333185285723*^9}, {
+  3.8220537474610205`*^9, 3.822053748451456*^9}, {3.8220538923559475`*^9, 
+  3.8220538965022135`*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"4e8f9640-d925-44f5-86ff-f8c05f464923"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["a2) Second case: k(x) = 1 and f2(x)", "Subsubsection",
+ CellChangeTimes->{{3.8213330825274167`*^9, 
+  3.821333102197288*^9}},ExpressionUUID->"69d1a608-94d9-4c27-bc05-\
+98930675ee34"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol12", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol12", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot12", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol12"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", " ", "Blue"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot12", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol12"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Yellow", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot12", ",", "nplot12", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the second case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.821163855959433*^9, 3.821163858678936*^9}, {
+  3.8211638982471905`*^9, 3.821163936197935*^9}, {3.821333165999522*^9, 
+  3.82133317937691*^9}, {3.8213332194640503`*^9, 3.821333221316176*^9}, {
+  3.821681436620941*^9, 3.82168146090007*^9}, {3.822053753211192*^9, 
+  3.822053754143772*^9}},
+ CellLabel->"In[97]:=",ExpressionUUID->"7460e85f-9719-438e-88aa-d19f3916c8ec"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["a3) Third case: k(x) = 1 + x and f1(x)", "Subsubsection",
+ CellChangeTimes->{{3.8213331223536806`*^9, 3.8213331537853703`*^9}, {
+  3.821333310815467*^9, 
+  3.821333310960828*^9}},ExpressionUUID->"91381187-a803-407d-8ab8-\
+cdbd84878d63"],
+
+Cell["\<\
+We have done the derivative -(k(x)u\[CloseCurlyQuote](x))\[CloseCurlyQuote] = \
+-k\[CloseCurlyQuote](x)u\[CloseCurlyQuote](x) -k(x)u\[CloseCurlyQuote]\
+\[CloseCurlyQuote](x) where k\[CloseCurlyQuote](x) = 1.\
+\>", "Text",
+ CellChangeTimes->{{3.8213333231723366`*^9, 
+  3.821333392550239*^9}},ExpressionUUID->"d1f841c3-6614-4f7e-8934-\
+9163cea1876a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol21", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol21", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot21", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol21"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Pink"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot21", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol21"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Brown", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot21", ",", "nplot21", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the third case\>\""}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.82116396067422*^9, 3.8211641279576063`*^9}, {
+  3.821164184771262*^9, 3.8211641899983044`*^9}, {3.8213331928340435`*^9, 
+  3.821333216228224*^9}, {3.8216814890400333`*^9, 3.8216815368274765`*^9}, {
+  3.8220537581950235`*^9, 3.82205375852113*^9}, {3.8220539873513517`*^9, 
+  3.82205414170076*^9}, {3.8220541914878597`*^9, 3.822054257965781*^9}, {
+  3.822054298820898*^9, 3.8220543352334185`*^9}, {3.8220551109867783`*^9, 
+  3.8220551205952835`*^9}},
+ CellLabel->
+  "In[179]:=",ExpressionUUID->"2778a6fb-2129-4793-ad3e-02e6ce6a7f87"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["a3) Fourth case: k(x) = 1 + x and f2(x)", "Subsubsection",
+ CellChangeTimes->{{3.8213333006790576`*^9, 
+  3.821333305436054*^9}},ExpressionUUID->"6a5103b1-6ca8-44a1-8009-\
+cb587bc516dc"],
+
+Cell["\<\
+We have done the derivative -(k(x)u\[CloseCurlyQuote](x))\[CloseCurlyQuote] = \
+-k\[CloseCurlyQuote](x)u\[CloseCurlyQuote](x) -k(x)u\[CloseCurlyQuote]\
+\[CloseCurlyQuote](x) where k\[CloseCurlyQuote](x) = 1.\
+\>", "Text",
+ CellChangeTimes->{
+  3.8213334080262537`*^9},ExpressionUUID->"98cd06b3-905d-4622-a8d9-\
+2171be4d3510"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol22", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol22", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot22", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol22"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot22", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol22"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot22", ",", "nplot22", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the fourth case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.82116421262788*^9, 3.8211642517360325`*^9}, {
+  3.8213332012906475`*^9, 3.8213332112932796`*^9}, {3.821681617655957*^9, 
+  3.821681619534541*^9}, {3.822053761611415*^9, 3.822053761981217*^9}},
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"fd8c7c17-5bb8-4da7-83bc-ed3568d25a6f"],
+
+Cell["Now, we are going to show all plots in an unique plot", "Text",
+ CellChangeTimes->{
+  3.8213341307256856`*^9},ExpressionUUID->"92c2c3fc-abde-4b14-ab13-\
+8168f0541730"],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+  "dplot11", ",", "nplot11", ",", "dplot12", ",", "nplot12", ",", "dplot21", 
+   ",", "nplot21", ",", "dplot22", ",", "nplot22", ",", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Case1\>\"", ",", "\"\<Case1\>\"", ",", "\"\<Case2\>\"", ",", 
+      "\"\<Case2\>\"", ",", "\"\<Case3\>\"", ",", "\"\<Case3\>\"", ",", 
+      "\"\<Case4\>\"", ",", "\"\<Case4\>\""}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8211642884180503`*^9, 3.821164324076325*^9}, {
+   3.82116471520754*^9, 3.8211647213686852`*^9}, {3.8211647558527308`*^9, 
+   3.821164756984146*^9}, {3.8216820650008917`*^9, 3.821682065388441*^9}, 
+   3.8216825293903008`*^9},
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"24362509-c7be-4fa4-9a08-9896057e1420"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b) Modify the above written program to take into account inhomogeneous BC \
+given by:\
+\>", "Subsection",
+ CellChangeTimes->{{3.8211644067761803`*^9, 3.8211644086990848`*^9}, {
+  3.8213335138121047`*^9, 
+  3.8213335583165407`*^9}},ExpressionUUID->"59406578-e9bc-4f11-b0b9-\
+31d4e941503f"],
+
+Cell["\<\
+We are going to separe different cases, but first let\[CloseCurlyQuote]s \
+define the functions we are going to use.\
+\>", "Text",
+ CellChangeTimes->{{3.8213335674150963`*^9, 
+  3.821333590465304*^9}},ExpressionUUID->"235d56b3-15fd-4c53-9ecb-\
+a3dec592e1cd"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellLabel->
+  "In[113]:=",ExpressionUUID->"45f00703-dce0-4c90-9953-31700329efe9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f1", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"3", "x"}], "+", 
+     RowBox[{"x", "^", "2"}]}], ")"}], "*", 
+   RowBox[{"Exp", "[", "x", "]"}]}]}]], "Input",
+ CellLabel->
+  "In[114]:=",ExpressionUUID->"49aacac4-abec-47d0-80f3-f713ebd15af6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f2", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Sin", "[", "x", "]"}], "*", 
+   RowBox[{"Exp", "[", "x", "]"}]}]}]], "Input",
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"2fccb052-79be-437f-8009-132846eb83f3"],
+
+Cell[CellGroupData[{
+
+Cell["b1) First case: k(x) = 1, f1(x), u(0) = 2 and u(1) = 1.", \
+"Subsubsection",
+ CellChangeTimes->{{3.821333606441634*^9, 3.821333611494892*^9}, {
+  3.8213339794936113`*^9, 3.8213340348731127`*^9}, {3.8213342148688316`*^9, 
+  3.821334214961934*^9}, {3.8216834067016416`*^9, 
+  3.8216834072527676`*^9}},ExpressionUUID->"0c9154f7-c2a0-4ffd-b773-\
+ace584e3f6bd"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol11", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "2"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol11", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "2"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot11", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol11"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Green"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot11", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol11"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot11", ",", "nplot11", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the first case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8211645071100073`*^9, 3.821164517333191*^9}, {
+  3.821334062744681*^9, 3.8213340672566023`*^9}, {3.822053766725872*^9, 
+  3.822053767135474*^9}},
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"34f35486-9f9d-4fb8-88f1-a3e1d3ad3afe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["b2) Second case: k(x) = 1 + x, f1(x), u(0) = 2 and u(1) = 1.", \
+"Subsubsection",
+ CellChangeTimes->{{3.8213336243826027`*^9, 3.8213336273343444`*^9}, {
+  3.8213340430676737`*^9, 3.8213340472853127`*^9}, {3.8213340813558598`*^9, 
+  3.8213340863682795`*^9}, {3.8213342115983686`*^9, 3.8213342117337227`*^9}, {
+  3.8216834103410807`*^9, 
+  3.821683410742175*^9}},ExpressionUUID->"6cce0b65-e894-4e81-a4b3-\
+32d34e4def63"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol21", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "2"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol21", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f1", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "2"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot21", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol21"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Pink"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot21", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol21"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Blue", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot21", ",", "nplot21", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the second case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8211645938323097`*^9, 3.8211646019328475`*^9}, {
+   3.8213340896768847`*^9, 3.8213340899960384`*^9}, {3.821334245082843*^9, 
+   3.8213342469824476`*^9}, {3.821681704635796*^9, 3.821681711620884*^9}, 
+   3.8216834242449527`*^9, {3.822053770634506*^9, 3.8220537710264254`*^9}},
+ CellLabel->
+  "In[121]:=",ExpressionUUID->"09b38922-e249-4455-9212-b8206e14c5f4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["b3) Third case: k(x) = 1, f2(x), u(0) = 5 and u(1) = -1.", \
+"Subsubsection",
+ CellChangeTimes->{{3.821333633914521*^9, 3.82133363602621*^9}, {
+  3.8213341505123825`*^9, 3.8213341742832184`*^9}, {3.8213342078067007`*^9, 
+  3.8213342079111214`*^9}, {3.82168341353988*^9, 
+  3.8216834139306555`*^9}},ExpressionUUID->"44beb51a-070f-4e1b-b6c7-\
+7b9282d8ccbc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol12", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "5"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", 
+        RowBox[{"-", "1"}]}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol12", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "5"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", 
+        RowBox[{"-", "1"}]}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot12", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol12"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Yellow"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot12", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol12"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot12", ",", "nplot12", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the third case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.821164638469865*^9, 3.8211646458165083`*^9}, {
+  3.821334094119465*^9, 3.821334094484421*^9}, {3.8213342397453628`*^9, 
+  3.8213342419170446`*^9}, {3.821681721095845*^9, 3.8216817258982396`*^9}, {
+  3.8220537748011107`*^9, 3.822053775135038*^9}},
+ CellLabel->
+  "In[126]:=",ExpressionUUID->"f4fa8d94-baf3-4749-b6a6-eba03609b8e4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b4) Fourth case: k(x) = 1 + x, f2(x), u(0) = 5 and u(1) = -1.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.821333643002679*^9, 3.8213336441295304`*^9}, {
+  3.821334178267007*^9, 3.821334236125841*^9}, {3.8216834165862713`*^9, 
+  3.821683416988618*^9}},ExpressionUUID->"a0597759-6b18-4388-b481-\
+f792e49cd5e0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dsol22", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "5"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", 
+        RowBox[{"-", "1"}]}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nsol22", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{
+           RowBox[{"u", "'"}], "[", "x", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"u", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"x", "*", 
+          RowBox[{
+           RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "\[Equal]", 
+        RowBox[{"f2", "[", "x", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "0", "]"}], "\[Equal]", "5"}], ",", 
+       RowBox[{
+        RowBox[{"u", "[", "1", "]"}], "\[Equal]", 
+        RowBox[{"-", "1"}]}]}], "}"}], ",", 
+     RowBox[{"u", "[", "x", "]"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dplot22", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "dsol22"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Green"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nplot22", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"u", "[", "x", "]"}], "}"}], " ", "/.", "nsol22"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Blue", ",", "Dashed"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"dplot22", ",", "nplot22", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<u\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<Plot of the fourth case\>\""}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8211646645092726`*^9, 3.821164672936392*^9}, {
+  3.82133409692249*^9, 3.821334097283965*^9}, {3.8213342514630656`*^9, 
+  3.8213342522857623`*^9}, {3.82168173607034*^9, 3.8216817384133463`*^9}, {
+  3.8216817728764467`*^9, 3.8216818014209576`*^9}, {3.821681861196366*^9, 
+  3.82168186377079*^9}, {3.8220537777687063`*^9, 3.8220537780952616`*^9}},
+ CellLabel->
+  "In[131]:=",ExpressionUUID->"1d3c59a1-ca8a-41cb-87cf-b418b56f88f7"],
+
+Cell["Now, we are going to show all plots in an unique plot", "Text",
+ CellChangeTimes->{{3.8213341019427695`*^9, 
+  3.821334120943237*^9}},ExpressionUUID->"8259e4f0-c969-4bd7-a55a-\
+84fba865d695"],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+  "dplot11", ",", "nplot11", ",", "dplot12", ",", "nplot12", ",", "dplot21", 
+   ",", "nplot21", ",", "dplot22", ",", "nplot22", ",", 
+   RowBox[{"PlotRange", "\[Rule]", " ", "All"}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Case1\>\"", ",", "\"\<Case1\>\"", ",", "\"\<Case2\>\"", ",", 
+      "\"\<Case2\>\"", ",", "\"\<Case3\>\"", ",", "\"\<Case3\>\"", ",", 
+      "\"\<Case4\>\"", ",", "\"\<Case4\>\""}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.821164697656501*^9, 3.821164704938514*^9}, {
+  3.8216818850509405`*^9, 3.8216819072627716`*^9}, {3.8216819396456137`*^9, 
+  3.821682041640127*^9}, {3.8216824103686223`*^9, 3.821682509306346*^9}},
+ CellLabel->
+  "In[136]:=",ExpressionUUID->"bbb98057-9d2e-4887-90a3-20e5cb79f3d4"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{949., 472.5},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.1 para Microsoft Windows (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e71c71eb-8aa6-41f4-9fc8-b2041b480d3a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 321, 5, 123, "Section",ExpressionUUID->"fc813aa4-cf21-4f72-8de6-cf6385e6f135"],
+Cell[881, 27, 170, 3, 53, "Section",ExpressionUUID->"7a3b8961-5e87-47b5-b6d5-1848b37a432f"],
+Cell[CellGroupData[{
+Cell[1076, 34, 464, 8, 95, "Section",ExpressionUUID->"19b6f078-a70f-496f-9342-4cf6585b6ba0"],
+Cell[1543, 44, 6704, 162, 333, "Input",ExpressionUUID->"bbfef6d0-1cc8-436c-b8b3-fe2420b12616"],
+Cell[CellGroupData[{
+Cell[8272, 210, 310, 7, 44, "Subsubsection",ExpressionUUID->"e262f64a-a7c4-49d6-8da8-a4496f0f3447"],
+Cell[8585, 219, 911, 21, 79, "Input",ExpressionUUID->"e9ff367c-7985-4087-87a7-140313124deb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9533, 245, 314, 7, 44, "Subsubsection",ExpressionUUID->"7e0b1deb-57ea-499f-8da7-d35a8f5d2cdd"],
+Cell[9850, 254, 1020, 23, 79, "Input",ExpressionUUID->"4fb0d12a-6611-4ebd-bd41-bac20458234e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10907, 282, 188, 3, 54, "Subsection",ExpressionUUID->"7a852ec4-406d-440b-bd07-0550baf44a7d"],
+Cell[11098, 287, 380, 8, 56, "Text",ExpressionUUID->"cb5f9181-2e15-4e69-87aa-c7d8194dcc3e"],
+Cell[CellGroupData[{
+Cell[11503, 299, 312, 7, 44, "Subsubsection",ExpressionUUID->"1898e8a0-5d54-4cb5-b075-813924013c8d"],
+Cell[11818, 308, 6530, 160, 389, "Input",ExpressionUUID->"dfef130c-da12-4cae-95d8-8ab2affeb716"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18385, 473, 369, 7, 44, "Subsubsection",ExpressionUUID->"1567fe77-507b-4198-b03e-3c3d4a7b5541"],
+Cell[18757, 482, 810, 20, 79, "Input",ExpressionUUID->"aa663ce3-a177-411f-9724-021a7e3224b1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19604, 507, 318, 7, 44, "Subsubsection",ExpressionUUID->"cf85b6b8-d3aa-4635-9f23-db60195c58bd"],
+Cell[19925, 516, 858, 21, 79, "Input",ExpressionUUID->"504ccdcb-2924-47fb-9bc9-dbdfbbe88526"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20820, 542, 323, 7, 44, "Subsubsection",ExpressionUUID->"adb472b9-d9df-4103-b89d-db597f3ab761"],
+Cell[21146, 551, 860, 21, 79, "Input",ExpressionUUID->"a21d8e30-daa7-4f03-9676-741abec5a4aa"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22043, 577, 316, 7, 44, "Subsubsection",ExpressionUUID->"892f14b8-b0b3-45cf-b673-c5c81d32c4c2"],
+Cell[22362, 586, 4157, 124, 353, "Input",ExpressionUUID->"63df3a27-3094-44f5-ae31-754ad11c4338"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26556, 715, 321, 7, 44, "Subsubsection",ExpressionUUID->"e866298b-ac2d-4e09-87f9-a7f407a80792"],
+Cell[26880, 724, 804, 20, 79, "Input",ExpressionUUID->"8c33f56c-dd23-4d41-b38f-48d01ee3034a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27721, 749, 320, 7, 44, "Subsubsection",ExpressionUUID->"6d64eca3-5ece-43a2-a4db-d57bb39e130a"],
+Cell[28044, 758, 860, 21, 79, "Input",ExpressionUUID->"1e6eecb8-fba3-4587-9950-f830f215bae5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28941, 784, 321, 7, 44, "Subsubsection",ExpressionUUID->"ae0f0103-d96d-4466-9774-5785260a6ca1"],
+Cell[29265, 793, 862, 21, 79, "Input",ExpressionUUID->"14e219ae-8e1d-43a9-8e2a-0b8bab4d98e3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30188, 821, 215, 4, 67, "Section",ExpressionUUID->"dc4d98d4-3e39-42d9-b447-c9329fbeeb18"],
+Cell[CellGroupData[{
+Cell[30428, 829, 484, 7, 73, "Subsubsection",ExpressionUUID->"953f46e9-28d5-494c-96bf-54ab16112779"],
+Cell[30915, 838, 269, 6, 34, "Text",ExpressionUUID->"7c2729d4-4437-4f6a-b86c-4a960a1e1653"],
+Cell[31187, 846, 248, 4, 44, "Input",ExpressionUUID->"25d8732c-86ae-4bbc-9b0c-d59aafad3645"],
+Cell[31438, 852, 428, 11, 44, "Input",ExpressionUUID->"9f41639c-7ac7-458c-85bb-fb181f3b5e83"],
+Cell[31869, 865, 314, 7, 44, "Input",ExpressionUUID->"318bb311-488d-4df1-89b8-a18a6a7055dd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32220, 877, 187, 3, 44, "Subsubsection",ExpressionUUID->"fd21cab8-1287-4991-bba3-c296938e5ebb"],
+Cell[32410, 882, 2814, 78, 187, "Input",ExpressionUUID->"4e8f9640-d925-44f5-86ff-f8c05f464923"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35261, 965, 188, 3, 44, "Subsubsection",ExpressionUUID->"69d1a608-94d9-4c27-bc05-98930675ee34"],
+Cell[35452, 970, 2674, 76, 187, "Input",ExpressionUUID->"7460e85f-9719-438e-88aa-d19f3916c8ec"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38163, 1051, 242, 4, 44, "Subsubsection",ExpressionUUID->"91381187-a803-407d-8ab8-cdbd84878d63"],
+Cell[38408, 1057, 359, 7, 34, "Text",ExpressionUUID->"d1f841c3-6614-4f7e-8934-9163cea1876a"],
+Cell[38770, 1066, 3181, 90, 208, "Input",ExpressionUUID->"2778a6fb-2129-4793-ad3e-02e6ce6a7f87"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41988, 1161, 192, 3, 44, "Subsubsection",ExpressionUUID->"6a5103b1-6ca8-44a1-8009-cb587bc516dc"],
+Cell[42183, 1166, 335, 7, 34, "Text",ExpressionUUID->"98cd06b3-905d-4622-a8d9-2171be4d3510"],
+Cell[42521, 1175, 2970, 87, 187, "Input",ExpressionUUID->"fd8c7c17-5bb8-4da7-83bc-ed3568d25a6f"],
+Cell[45494, 1264, 173, 3, 34, "Text",ExpressionUUID->"92c2c3fc-abde-4b14-ab13-8168f0541730"],
+Cell[45670, 1269, 802, 16, 79, "Input",ExpressionUUID->"24362509-c7be-4fa4-9a08-9896057e1420"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46509, 1290, 298, 7, 81, "Subsection",ExpressionUUID->"59406578-e9bc-4f11-b0b9-31d4e941503f"],
+Cell[46810, 1299, 268, 6, 34, "Text",ExpressionUUID->"235d56b3-15fd-4c53-9ecb-a3dec592e1cd"],
+Cell[47081, 1307, 156, 3, 44, "Input",ExpressionUUID->"45f00703-dce0-4c90-9953-31700329efe9"],
+Cell[47240, 1312, 313, 10, 44, "Input",ExpressionUUID->"49aacac4-abec-47d0-80f3-f713ebd15af6"],
+Cell[47556, 1324, 248, 7, 44, "Input",ExpressionUUID->"2fccb052-79be-437f-8009-132846eb83f3"],
+Cell[CellGroupData[{
+Cell[47829, 1335, 362, 6, 44, "Subsubsection",ExpressionUUID->"0c9154f7-c2a0-4ffd-b773-ace584e3f6bd"],
+Cell[48194, 1343, 2528, 75, 223, "Input",ExpressionUUID->"34f35486-9f9d-4fb8-88f1-a3e1d3ad3afe"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50759, 1423, 424, 7, 44, "Subsubsection",ExpressionUUID->"6cce0b65-e894-4e81-a4b3-32d34e4def63"],
+Cell[51186, 1432, 3053, 88, 223, "Input",ExpressionUUID->"09b38922-e249-4455-9212-b8206e14c5f4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54276, 1525, 361, 6, 44, "Subsubsection",ExpressionUUID->"44beb51a-070f-4e1b-b6c7-7b9282d8ccbc"],
+Cell[54640, 1533, 2680, 78, 223, "Input",ExpressionUUID->"f4fa8d94-baf3-4749-b6a6-eba03609b8e4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[57357, 1616, 319, 6, 44, "Subsubsection",ExpressionUUID->"a0597759-6b18-4388-b481-f792e49cd5e0"],
+Cell[57679, 1624, 3171, 91, 223, "Input",ExpressionUUID->"1d3c59a1-ca8a-41cb-87cf-b418b56f88f7"],
+Cell[60853, 1717, 197, 3, 34, "Text",ExpressionUUID->"8259e4f0-c969-4bd7-a55a-84fba865d695"],
+Cell[61053, 1722, 828, 16, 115, "Input",ExpressionUUID->"bbb98057-9d2e-4887-90a3-20e5cb79f3d4"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
